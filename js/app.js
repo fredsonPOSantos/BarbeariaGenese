@@ -1,4 +1,4 @@
-const API_URL = 'https://138.204.143.189:8182/api' ; 
+const API_URL = 'https://138.204.143.189:8182' ; 
 
 // Função para verificar a URL atual
 function isDashboardPage() {
