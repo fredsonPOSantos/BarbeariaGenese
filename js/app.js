@@ -1,4 +1,4 @@
-const API_URL = 'http://barbeariagenese.ddns.net:8183/api';'http://localhost:3001/api'; 'http://138.204.143.189:8183/api' ; 
+const API_URL = 'https://138.204.143.189:8183/api' ; 
 
 // Função para verificar a URL atual
 function isDashboardPage() {
