@@ -1,4 +1,4 @@
-const API_URL = 'http://barbeariagenese.ddns.net:8183/api/appointments' ;
+const API_URL = 'https://138.204.143.189:8183/api/appointments' ;
 
 // Função para fazer login
 async function loginUser(event) {
