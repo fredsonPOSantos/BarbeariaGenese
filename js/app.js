@@ -146,7 +146,7 @@ document.getElementById('loginForm')?.addEventListener('submit', async (e) => {
     const username = document.getElementById('username').value;
     const password = document.getElementById('password').value;
 
-    const response = await fetch(`${API_URL}/auth/login`, {
+    const response = await fetch('https://138.204.143.189:8182/api/auth/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ username, password }),
