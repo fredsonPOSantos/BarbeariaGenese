@@ -1,4 +1,4 @@
-const API_URL = 'https://138.204.143.189:8182/api' ; 
+const API_URL = 'https://138.204.143.189:8183/api' ;
 
 // Função para verificar a URL atual
 function isDashboardPage() {
@@ -146,7 +146,7 @@ document.getElementById('loginForm')?.addEventListener('submit', async (e) => {
     const username = document.getElementById('username').value;
     const password = document.getElementById('password').value;
 
-    const response = await fetch('https://138.204.143.189:8182/api/auth/login', {
+    const response = await fetch(`${API_URL}/auth/login`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ username, password }),
