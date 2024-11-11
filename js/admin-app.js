@@ -43,7 +43,7 @@ async function fetchAppointments() {
         const appointments = await response.json();
         console.log(appointments);
 
-        displayAppointments(appointments);// Atualiza a lista de agendamentos
+        displayAppointments(appointments); displayAppointments(appointments); // Atualiza a lista de agendamentos
     } else {
         console.error('Erro ao buscar agendamentos:', response.statusText);
     }
@@ -89,7 +89,7 @@ function validateAppointmentDate(dateTime) {
 document.addEventListener('DOMContentLoaded', loadUsernames);
 async function loadUsernames() {
     try {
-        const response = await fetch(`${API_URL}/users`, {
+        const response = await fetch('/api/users', {
             headers: {
                 'Authorization': `Bearer ${localStorage.getItem('token')}`
             }
@@ -258,7 +258,7 @@ async function searchAppointmentByUsername() {
 }
 // /client/js/admin-app.js
 async function fetchAnalytics() {
-    const response = await fetch(`https://138.204.143.189:8183/api/reports/analytics`, {
+    const response = await fetch('/api/reports/analytics', {
         method: 'GET',
         headers: {
             'Authorization': `Bearer ${localStorage.getItem('token')}`
@@ -315,41 +315,9 @@ function initializeCalendar(appointments) {
             if (event) {
                 const confirmDelete = confirm(`Deseja excluir o agendamento "${event.title}"?`);
                 if (confirmDelete) {
-                    deleteAppointment(`${API_URL}/${event.id}`); // Chama a função para excluir o agendamento
+                    deleteAppointment(event.id); // Chama a função para excluir o agendamento
                 }
             }
         }
     });
-}
-async function exportAppointments() {
-    try {
-        const response = await fetch(`https://138.204.143.189:8183/api/appointments/export`, {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${localStorage.getItem('token')}`
-            }
-        });
-
-        if (!response.ok) {
-            const errorData = await response.json();
-            console.error('Erro ao exportar agendamentos:', errorData);
-            alert(`Erro ao exportar agendamentos: ${errorData.message}`);
-            return;
-        }
-
-        const csvData = await response.text();
-        const blob = new Blob([csvData], { type: 'text/csv;charset=utf-8;' });
-        const url = URL.createObjectURL(blob);
-        
-        const link = document.createElement('a');
-        link.href = url;
-        link.setAttribute('download', 'agendamentos.csv');
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
-    } catch (error) {
-        console.error('Erro ao exportar agendamentos:', error);
-        alert('Ocorreu um erro ao exportar agendamentos. Por favor, tente novamente mais tarde.');
-    }
 }
