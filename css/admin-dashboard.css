@@ -1,0 +1,191 @@
+/* RESETS */
+@import url('https://fonts.googleapis.com/css2?family=Bungee+Shade&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Sanchez&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Monoton&display=swap');
+
+:root {
+    --background-color: #f8f4f0;
+    --primary-color: #a67d5d;
+    --secondary-color: #3c2f2f;
+    --text-color: #3c3c3c;
+    --button-hover: #8b5e3c;
+    --highlight-red: #e57373;
+    --highlight-green: #81c784;
+}
+
+
+body {
+    background-color: var(--background-color);
+    color: var(--text-color);
+    font-family: 'Sanchez', sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Sanchez', sans-serif;
+
+}
+
+.header {
+    background-color: var(--primary-color);
+    padding: 1.1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    
+  
+}
+
+.header a{
+
+    font-style: none;
+    color: #f8f4f0;
+    text-decoration: none;
+    transition: color 0.3s;
+    text-transform: uppercase;
+    font-family: "Sanchez", sans-serif;
+    margin-left: 13px;
+
+}
+
+.header button, .dashboard-navigation button {
+    background: none;
+    border: none;
+    font-size: 1rem;
+    cursor: pointer;
+    color: #f0e6de;
+    transition: transform 0.3s, color 0.3s;
+    text-transform: uppercase;
+    font-family: "Sanchez", sans-serif;
+   
+}
+
+.dashboard-navigation button a::after{
+    background-color: #ee1010;
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+    transform-origin: bottom right;
+}
+
+.dashboard-navigation button a::after{
+    transform: scaleX(2);
+    transform-origin: bottom center;
+}
+
+.header button:hover, .dashboard-navigation button:hover {
+    color:rgb(248, 4, 4);
+    transform: scale(1.1);
+}
+
+.dashboard-navigation {
+    margin: 1rem 0;
+    display: flex;
+    gap: 1rem;
+}
+
+.admin-painel h1 {
+    font-size: 2rem;
+    color: var(--secondary-color);
+    margin-bottom: 1rem;
+}
+
+section {
+    width: 80%;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    background: #fff;
+    border: 1px solid var(--primary-color);
+    border-radius: 5px;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeIn 0.5s forwards;
+}
+
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.search-section {
+    position: fixed;
+    top: 75px;
+    right: 20px;
+    width: 350px;
+    height: 100px;
+    background-color:  #f0e6de;
+    border: 1px solid var(--primary-color);
+    border-radius: 5px;
+    margin: 0;
+    text-align: center;
+    padding: 0;
+    font-size: 13px;
+}
+.search-section input {
+    width: 50%;
+    margin-bottom: 1rem;
+    border: 1px solid var(--primary-color);
+    border-radius: 5px;
+    text-align: center;
+}
+.search-section button{
+
+    border-radius: 5px;
+    background-color: var(--primary-color);
+    color: #fff;
+    transition: background-color 0.3s;
+}
+.search-section button:hover {
+    background-color: var(--button-hover);
+}
+
+button {
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    border-radius: 5px;
+}
+
+.dashboard-navigation button{
+
+color: #000000;
+font-weight: bold;
+
+}
+
+.dashboard-navigation button:hover {
+    background-color: #8b5e3c;
+    color: #fff;
+}
+
+button:hover {
+    background-color: var(--button-hover);
+}
+
+#logoutButton {
+    border: 2px solid var(--highlight-red);
+    color: var(--highlight-red);
+    padding: 0.5rem 1rem;
+}
+
+#logoutButton:hover {
+    background-color: var(--highlight-red);
+    color: #fff;
+}
+
+#exportButton {
+    border: 2px solid var(--highlight-green);
+    color: var(--highlight-green);
+}
+
+#exportButton:hover {
+    background-color: var(--highlight-green);
+    color: #fff;
+}
