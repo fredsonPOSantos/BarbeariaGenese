@@ -43,7 +43,7 @@ async function fetchAppointments() {
         const appointments = await response.json();
         console.log(appointments);
 
-        displayAppointments(appointments); displayAppointments(appointments); // Atualiza a lista de agendamentos
+        displayAppointments(appointments);// Atualiza a lista de agendamentos
     } else {
         console.error('Erro ao buscar agendamentos:', response.statusText);
     }
@@ -59,17 +59,19 @@ function displayAppointments(appointments) {
         return;
     }
     appointments.forEach(appointment => {
+        console.log("Data do agendamento no banco:", appointment.dateTime);
         const appointmentDiv = document.createElement('div');
         appointmentDiv.classList.add('appointment');
-
-        appointmentDiv.innerHTML = `
-            <p><strong>Serviço:</strong> ${appointment.serviceType}</p>
-            <p><strong>Data e Hora:</strong> ${new Date(appointment.dateTime).toLocaleString()}</p>
-            <p><strong>Usuário:</strong> ${appointment.username}</p> <!-- Mostra o nome do usuário -->
-            <button onclick="editAppointment('${appointment._id}')">Editar</button>
-            <button onclick="deleteAppointment('${appointment._id}')">Excluir</button>
-        `;
-
+// Converte o horário do agendamento para o horário local do cliente
+new Date(new Date(appointment.dateTime).getTime() - new Date().getTimezoneOffset() * 60000).toLocaleString('pt-BR');
+console.log("Data do agendamento no fuso horário local:", localDateTime);
+appointmentDiv.innerHTML = `
+    <p><strong>Serviço:</strong> ${appointment.serviceType}</p>
+    <p><strong>Data e Hora:</strong> ${localDateTime}</p>
+    <p><strong>Usuário:</strong> ${appointment.username}</p> <!-- Mostra o nome do usuário -->
+    <button onclick="editAppointment('${appointment._id}')">Editar</button>
+    <button onclick="deleteAppointment('${appointment._id}')">Excluir</button>
+`;
         appointmentsContainer.appendChild(appointmentDiv);
     });
 }
@@ -89,7 +91,7 @@ function validateAppointmentDate(dateTime) {
 document.addEventListener('DOMContentLoaded', loadUsernames);
 async function loadUsernames() {
     try {
-        const response = await fetch('/api/users', {
+        const response = await fetch(`${API_URL}/users`, {
             headers: {
                 'Authorization': `Bearer ${localStorage.getItem('token')}`
             }
@@ -124,8 +126,7 @@ async function createAppointment() {
     if (date && time && serviceType && targetUsername) {
         const dateTime = new Date(`${date}T${time}:00`); // Combina a data e hora
 
-        
-
+     
         try {
             const response = await fetch(API_URL, {
                 method: 'POST',
@@ -150,9 +151,6 @@ async function createAppointment() {
         alert('Data, hora, serviço e nome do usuário são obrigatórios!');
     }
 }
-
-
-
 
 
 // Função para editar um agendamento
@@ -256,9 +254,9 @@ async function searchAppointmentByUsername() {
         alert('Erro ao buscar agendamentos. Por favor, tente novamente.');
     }
 }
-// /client/js/admin-app.js
+
 async function fetchAnalytics() {
-    const response = await fetch('/api/reports/analytics', {
+    const response = await fetch(`https://api-agendamento-idb2.onrender.com/api/reports/analytics`, {
         method: 'GET',
         headers: {
             'Authorization': `Bearer ${localStorage.getItem('token')}`
@@ -315,9 +313,41 @@ function initializeCalendar(appointments) {
             if (event) {
                 const confirmDelete = confirm(`Deseja excluir o agendamento "${event.title}"?`);
                 if (confirmDelete) {
-                    deleteAppointment(event.id); // Chama a função para excluir o agendamento
+                    deleteAppointment(`${API_URL}/${event.id}`); // Chama a função para excluir o agendamento
                 }
             }
         }
     });
+}
+async function exportAppointments() {
+    try {
+        const response = await fetch(`https://api-agendamento-idb2.onrender.com/api/appointments/export`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${localStorage.getItem('token')}`
+            }
+        });
+
+        if (!response.ok) {
+            const errorData = await response.json();
+            console.error('Erro ao exportar agendamentos:', errorData);
+            alert(`Erro ao exportar agendamentos: ${errorData.message}`);
+            return;
+        }
+
+        const csvData = await response.text();
+        const blob = new Blob([csvData], { type: 'text/csv;charset=utf-8;' });
+        const url = URL.createObjectURL(blob);
+        
+        const link = document.createElement('a');
+        link.href = url;
+        link.setAttribute('download', 'agendamentos.csv');
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+    } catch (error) {
+        console.error('Erro ao exportar agendamentos:', error);
+        alert('Ocorreu um erro ao exportar agendamentos. Por favor, tente novamente mais tarde.');
+    }
 }
