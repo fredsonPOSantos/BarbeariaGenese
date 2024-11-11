@@ -1,4 +1,4 @@
-const API_URL = 'https://138.204.143.189:8183/api' ;
+const API_URL = 'https://138.204.143.189:8183/api';
 
 // Função para verificar a URL atual
 function isDashboardPage() {
@@ -103,8 +103,7 @@ async function loadAppointments(username) {
                 <div>
                     <p>${appointment.serviceType} - ${new Date(appointment.dateTime).toLocaleString()}</p>
                     <button onclick="rescheduleAppointment('${appointment._id}')">Remarcar</button>
-                    <button onclick="cancelAppointment('${appointment._id}')">Cancelar</button>
-                </div>
+<button onclick="cancelAppointment('${appointment._id}')" style="background-color: rgb(112, 22, 22); color: white;">Cancelar</button>                </div>
             `).join('');
         }
     } catch (error) {
