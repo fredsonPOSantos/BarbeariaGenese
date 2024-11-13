@@ -1,19 +1,20 @@
 /* RESETS */
-/* RESETS */
 @import url('https://fonts.googleapis.com/css2?family=Bungee+Shade&display=swap');
 @import url('https://fonts.googleapis.com/css?family=Sanchez&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Monoton&display=swap');
-:root {
-  --background-color: #f8f4f0; /* Marrom claro, quase branco */
-  --primary-color: #a67d5d; /* Marrom principal */
-  --secondary-color: #3c2f2f; /* Marrom mais escuro */
-  --text-color: #3c3c3c;
-  --button-hover: #8b5e3c;
-}
-*{
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
+@import url('https://fonts.googleapis.com/css2?family=Sour+Gummy:ital,wght@0,100..900;1,100..900&display=swap');
+
+    :root {
+      --background-color: #f8f4f0; /* Marrom claro, quase branco */
+      --primary-color: #a67d5d; /* Marrom principal */
+      --secondary-color: #3c2f2f; /* Marrom mais escuro */
+      --text-color: #3c3c3c;
+      --button-hover: #8b5e3c;
+    }
+     *{
+      padding: 0;
+      margin: 0;
+      box-sizing: border-box;
     }
     
     html, body{
@@ -23,7 +24,7 @@
       background-color:  #f8f4f0;
     }
 
-/*Estilização da pagina e coontroles*/
+    /*Estilização da pagina e coontroles*/
     
     img{
       display: block;
@@ -34,6 +35,43 @@
       text-decoration: none;
       color: #f8f4f0;
     }
+    .menu ul li a::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 0;
+      height: 2px;
+      background-color: currentColor;
+      transition: width 0.3s ease;
+    }
+    .menu ul li a:hover::after {
+      width: 100%;
+    }
+    #header-register {
+      transition: transform 0.3s ease, background-color 0.3s ease;
+      color: #000000;
+      letter-spacing: 1.5px;
+      font-family: "Sour+Gummy", sans-serif;
+      font-style: italic;  
+    }
+
+    #header-register:hover {
+      transform: scale(1.2);
+      color: #f8f4f0;;
+    }
+    #header-login {
+      color: rgb(0, 0, 0);
+      transition: transform 0.3s ease, background-color 0.3s ease;
+      letter-spacing: 1.5px;
+      font-family: "Sour+Gummy", sans-serif;
+      font-style: italic;
+    }
+    #header-login:hover {
+      transform: scale(1.2);
+      color:#f8f4f0;;
+    }
+
     
     .preloader{
       background-color: #000000;
@@ -57,7 +95,6 @@
       border: 2px solid var(--primary-color); /* Opcional: adiciona uma borda */
     }
     
-    
     .load{
       width: 320px;
       height: 320px;
@@ -71,7 +108,7 @@
       to {transform: rotate(360deg)}
     }
     
-    /* MENU */
+      /* MENU */
     .teste-menu{
       width: 100%;
       margin: 0 auto;
@@ -144,6 +181,8 @@
     
     .menu ul li a:hover{
       color: #3c2f2f;
+      width: 100%;
+
     }
     
     /* ICONES */
