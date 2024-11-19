@@ -178,10 +178,10 @@ button:hover {
 
 /* Efeito Vermelho no botão "Sair" pra destacar */
 .header #logoutButton:hover {
-    color: rgb(112, 22, 22); /* Altera a cor do texto */
-    border-color:rgb(112, 22, 22); /* Adiciona uma borda vermelha */
+    color: rgb(199, 27, 28); /* Altera a cor do texto */
+    border-color:rgb(199, 27, 28); /* Adiciona uma borda vermelha */
     transform: scale(1.1); /* Aumenta o tamanho do botão em 20% */
-    box-shadow: 0 0 10px rgb(112, 22, 22); /* Aplica uma leve sombra ao redor */
+    box-shadow: 0 0 10px rgb(199, 27, 28); /* Aplica uma leve sombra ao redor */
 }
 #exportButton {
     border: 2px solid var(--highlight-green);
