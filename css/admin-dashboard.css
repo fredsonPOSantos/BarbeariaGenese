@@ -1,4 +1,4 @@
-/* RESETS */
+/* RESETAR TUDO */
 @import url('https://fonts.googleapis.com/css2?family=Bungee+Shade&display=swap');
 @import url('https://fonts.googleapis.com/css?family=Sanchez&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Monoton&display=swap');
@@ -31,12 +31,11 @@ body {
 
 .header {
     background-color: var(--primary-color);
-    padding: 1.1rem;
+    padding: 2.2rem;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
     width: 100%;
-    
   
 }
 
@@ -65,7 +64,7 @@ body {
 }
 
 .dashboard-navigation button a::after{
-    background-color: #ee1010;
+    background-color: #ffffff;
     transform: scaleX(0);
     transition: transform 0.3s ease;
     transform-origin: bottom right;
@@ -114,8 +113,8 @@ section {
 
 .search-section {
     position: fixed;
-    top: 75px;
-    right: 20px;
+    top: 200px;
+    right: 120px;
     width: 350px;
     height: 100px;
     background-color:  #f0e6de;
@@ -137,11 +136,12 @@ section {
 
     border-radius: 5px;
     background-color: var(--primary-color);
-    color: #fff;
+    color: #000000;
     transition: background-color 0.3s;
 }
 .search-section button:hover {
     background-color: var(--button-hover);
+    color: #ffffff;
 }
 
 button {
@@ -164,22 +164,25 @@ font-weight: bold;
     background-color: #8b5e3c;
     color: #fff;
 }
-
 button:hover {
     background-color: var(--button-hover);
 }
-
-#logoutButton {
-    border: 2px solid var(--highlight-red);
-    color: var(--highlight-red);
-    padding: 0.5rem 1rem;
-}
-
-#logoutButton:hover {
-    background-color: var(--highlight-red);
+.header #logoutButton {
+    position: relative;
     color: #fff;
+    padding: 5px 10px;
+    border: 2px solid transparent;
+    border-radius: 5px;
+    transition: transform 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
+/* Efeito Vermelho no botão "Sair" pra destacar */
+.header #logoutButton:hover {
+    color: rgb(112, 22, 22); /* Altera a cor do texto */
+    border-color:rgb(112, 22, 22); /* Adiciona uma borda vermelha */
+    transform: scale(1.1); /* Aumenta o tamanho do botão em 20% */
+    box-shadow: 0 0 10px rgb(112, 22, 22); /* Aplica uma leve sombra ao redor */
+}
 #exportButton {
     border: 2px solid var(--highlight-green);
     color: var(--highlight-green);
