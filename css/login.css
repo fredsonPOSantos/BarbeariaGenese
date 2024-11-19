@@ -41,9 +41,9 @@ body, ul, li, p, footer{
     /* Header */
 .header {
     background-color: var(--primary-color);
-    padding: 1.6rem;
+    padding: 2.5rem;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
     width: 100%;
 
