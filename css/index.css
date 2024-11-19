@@ -30,6 +30,10 @@
       display: block;
       max-width: 100%;
     }
+    img.logotipo{
+      width: 350px;
+      height: 350px;
+    }
     
     a{
       text-decoration: none;
@@ -71,7 +75,16 @@
       transform: scale(1.2);
       color:#f8f4f0;;
     }
-
+    main#teste-menu.teste-menu{
+        padding: 1.5rem;
+    }
+    body section.icones{
+      padding: 20px;
+    }
+    #header-login:hover {
+      transform: scale(1.2);
+      color:#f8f4f0;;
+    }
     
     .preloader{
       background-color: #000000;
@@ -249,7 +262,7 @@
       max-height: 50px;
       justify-content: center;
       padding: 30px 30px 110px 10px;
-      font-size: 4em;
+      font-size: 3.5rem;
       color:   #70533c;
       text-align: center;
       text-transform: uppercase;
@@ -504,7 +517,6 @@
       color: #000000;
       padding: 20px;
     }
-    
     .local p{
       font-size: 0.9em;
       letter-spacing: 2px;
@@ -513,7 +525,19 @@
       color: #3c3c3c;
       padding-left: 20px;
     }
-    
+
+    div.local-base a p{
+      font-size: 1.2rem;
+      letter-spacing: 1px;
+      font-weight: bold;
+      font-family: "Sanchez", sans-serif;
+      color: #000000;
+      margin-top: 20px;
+      margin-bottom: 20px;
+      margin-right: 100px;
+
+    }
+   
     .website h1{
       font-size: 1em;
       letter-spacing: 2px;
@@ -584,7 +608,7 @@
     width: 150px;
     height: 150px;
     position: fixed;
-    top: 150px; /* Limite superior para não cobrir o header */
+    top: 200px; /* Limite superior para não cobrir o header */
     bottom: 100px; /* Limite inferior para não cobrir o footer */
     display: flex;
     align-items: center;
