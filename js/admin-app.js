@@ -1,4 +1,4 @@
-const API_URL = 'https://api-agendamento-idb2.onrender.com/api/appointments' ; 
+const API_URL = 'http://api-agendamento-idb2.onrender.com/api/appointments' ; 
 // Função para fazer login
 async function loginUser(event) {
     event.preventDefault();
@@ -267,7 +267,7 @@ async function searchAppointmentByUsername() {
 }
 
 async function fetchAnalytics() {
-    const response = await fetch(`https://api-agendamento-idb2.onrender.com/api/reports/analytics`, {
+    const response = await fetch(`http://api-agendamento-idb2.onrender.com/api/reports/analytics`, {
         method: 'GET',
         headers: {
             'Authorization': `Bearer ${localStorage.getItem('token')}`
@@ -332,7 +332,7 @@ function initializeCalendar(appointments) {
 }
 async function exportAppointments() {
     try {
-        const response = await fetch(`https://api-agendamento-idb2.onrender.com/api/appointments/export`, {
+        const response = await fetch(`http://api-agendamento-idb2.onrender.com/api/appointments/export`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
