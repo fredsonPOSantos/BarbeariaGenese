@@ -1,4 +1,4 @@
-const API_URL = 'https://api-agendamento-idb2.onrender.com:4000/api/appointments'; 
+const API_URL = 'https://api-agendamento-idb2.onrender.com/api/appointments' ; 
 // Função para fazer login
 async function loginUser(event) {
     event.preventDefault();
@@ -48,6 +48,17 @@ async function fetchAppointments() {
         console.error('Erro ao buscar agendamentos:', response.statusText);
     }
 }
+function adjustToBrazilTime(utcDateTime) {
+    const date = new Date(utcDateTime);
+    date.setHours(date.getHours() - date.getTimezoneOffset() / 60 + 3); // Ajusta para UTC-3
+    return date.toLocaleString('pt-BR', {
+        day: '2-digit',
+        month: '2-digit',
+        year: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit',
+    });
+}
 
 // Função para exibir os agendamentos na tela
 function displayAppointments(appointments) {
@@ -58,14 +69,15 @@ function displayAppointments(appointments) {
         appointmentsContainer.innerHTML = '<p>Nenhum agendamento encontrado.</p>';
         return;
     }
+
     appointments.forEach(appointment => {
         const appointmentDiv = document.createElement('div');
         appointmentDiv.classList.add('appointment');
 
         appointmentDiv.innerHTML = `
             <p><strong>Serviço:</strong> ${appointment.serviceType}</p>
-            <p><strong>Data e Hora:</strong> ${new Date(appointment.dateTime).toLocaleString()}</p>
-            <p><strong>Usuário:</strong> ${appointment.username}</p> <!-- Mostra o nome do usuário -->
+            <p><strong>Data e Hora:</strong> ${adjustToBrazilTime(appointment.dateTime)}h</p>
+            <p><strong>Usuário:</strong> ${appointment.username}</p>
             <button onclick="editAppointment('${appointment._id}')">Editar</button>
             <button onclick="deleteAppointment('${appointment._id}')">Excluir</button>
         `;
@@ -73,6 +85,7 @@ function displayAppointments(appointments) {
         appointmentsContainer.appendChild(appointmentDiv);
     });
 }
+
 // Função para validar o horário do agendamento
 function validateAppointmentDate(dateTime) {
     const now = new Date();
