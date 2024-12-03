@@ -1,4 +1,4 @@
-const API_URL = 'http://api-agendamento-idb2.onrender.com/api';
+const API_URL = 'https://fredsonposantos.github.io/API-Vercel/api';
 
 // Função para verificar a URL atual
 function isDashboardPage() {
