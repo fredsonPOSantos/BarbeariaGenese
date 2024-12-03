@@ -1,4 +1,5 @@
-const API_URL = 'https://api-agendamento-idb2.onrender.com:4000/api';
+const API_URL = 'https://api-agendamento-idb2.onrender.com/api' ;
+//https://api-agendamento-idb2.onrender.com/api
 
 // Função para verificar a URL atual
 function isDashboardPage() {
@@ -81,7 +82,17 @@ async function handleLogin() {
     }
     return username;
 }
-
+function adjustToBrazilTime(utcDateTime) {
+    const date = new Date(utcDateTime);
+    date.setHours(date.getHours() - date.getTimezoneOffset() / 60 + 3); // Ajusta para UTC-3
+    return date.toLocaleString('pt-BR', {
+        day: '2-digit',
+        month: '2-digit',
+        year: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit',
+    });
+}
 // Função para carregar agendamentos de um usuário específico
 async function loadAppointments(username) {
     const token = localStorage.getItem('token');
@@ -101,9 +112,9 @@ async function loadAppointments(username) {
         } else {
             appointmentsDiv.innerHTML = appointments.map(appointment => `
                 <div>
-                    <p>${appointment.serviceType} - ${new Date(appointment.dateTime).toLocaleString()}</p>
+                    <p>${appointment.serviceType} - ${adjustToBrazilTime(appointment.dateTime)}</p>
                     <button onclick="rescheduleAppointment('${appointment._id}')">Remarcar</button>
-<button onclick="cancelAppointment('${appointment._id}')" style="background-color: rgb(189, 27, 28); color: white;">Cancelar</button>                </div>
+                    <button onclick="cancelAppointment('${appointment._id}')" style="background-color: rgb(199, 27, 28); color: white;">Cancelar</button></div>
             `).join('');
         }
     } catch (error) {
