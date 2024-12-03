@@ -1,5 +1,4 @@
-const API_URL = 'http://api-agendamento-idb2.onrender.com/api' ;
-//https://api-agendamento-idb2.onrender.com/api
+const API_URL = 'https://138.204.143.189:8183/api';
 
 // Função para verificar a URL atual
 function isDashboardPage() {
@@ -93,7 +92,7 @@ function adjustToBrazilTime(utcDateTime) {
         minute: '2-digit',
     });
 }
-// Função para carregar agendamentos de um usuário específico
+
 async function loadAppointments(username) {
     const token = localStorage.getItem('token');
 
@@ -122,6 +121,7 @@ async function loadAppointments(username) {
         alert('Erro ao carregar os agendamentos');
     }
 }
+
 
 // Registro de usuários
 document.getElementById('registerForm')?.addEventListener('submit', async (e) => {
